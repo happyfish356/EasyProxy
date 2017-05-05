@@ -3,7 +3,7 @@ package main
 import (
 	"config"
 	gw "gateway"
-	"log"
+	log "log1"
 	"os"
 	"os/signal"
 	"path/filepath"
