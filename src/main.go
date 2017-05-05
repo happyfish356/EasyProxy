@@ -1,22 +1,21 @@
 package main
 
 import (
+	"config"
+	gw "gateway"
+	"log"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"runtime"
 	"syscall"
-	"os/signal"
-	"github.com/xsank/EasyProxy/src/web"
-	"github.com/xsank/EasyProxy/src/config"
-	"github.com/xsank/EasyProxy/src/util"
-	"github.com/xsank/EasyProxy/src/log"
-	gw"github.com/xsank/EasyProxy/src/gateway"
+	"util"
+	"web"
 )
 
-const
-(
+const (
 	DefaultConfigFile = "conf/default.json"
-	DefaultLogFile = "esayproxy.log"
+	DefaultLogFile    = "esayproxy.log"
 )
 
 type EasyServer struct {
@@ -25,15 +24,15 @@ type EasyServer struct {
 }
 
 func CreateEasyServer() *EasyServer {
-	return &EasyServer{webServer:new(web.WebServer), proxyServer:new(gw.ProxyServer)}
+	return &EasyServer{webServer: new(web.WebServer), proxyServer: new(gw.ProxyServer)}
 }
 
-func (easyServer *EasyServer)Init(config *config.Config) {
+func (easyServer *EasyServer) Init(config *config.Config) {
 	easyServer.webServer.Init(config)
 	easyServer.proxyServer.Init(config)
 }
 
-func (easyServer *EasyServer)Start() {
+func (easyServer *EasyServer) Start() {
 	easyServer.webServer.Start()
 	easyServer.proxyServer.Start()
 }
@@ -53,7 +52,7 @@ func (easyServer *EasyServer) Stop() {
 
 func main() {
 	log.Init(DefaultLogFile)
-	
+
 	homePath := util.HomePath()
 	config, err := config.Load(filepath.Join(homePath, DefaultConfigFile))
 

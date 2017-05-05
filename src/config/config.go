@@ -1,20 +1,20 @@
 package config
 
 import (
-	"os"
 	"encoding/json"
 	"log"
-	"github.com/xsank/EasyProxy/src/structure"
+	"os"
+	"structure"
 )
 
 type Config struct {
-	Service      string `json:"service"`
-	Host         string `json:"host"`
-	Port         uint16 `json:"port"`
-	WebPort      uint16 `json:"webport"`
-	Strategy     string `json:"strategy"`
-	Heartbeat    int `json:"heartbeat"`
-	MaxProcessor int `json:"maxprocessor"`
+	Service      string              `json:"service"`
+	Host         string              `json:"host"`
+	Port         uint16              `json:"port"`
+	WebPort      uint16              `json:"webport"`
+	Strategy     string              `json:"strategy"`
+	Heartbeat    int                 `json:"heartbeat"`
+	MaxProcessor int                 `json:"maxprocessor"`
 	Backends     []structure.Backend `json:"backends"`
 }
 
@@ -34,4 +34,3 @@ func Load(filename string) (*Config, error) {
 	log.Println("success load config file:", filename)
 	return &config, err
 }
-

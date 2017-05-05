@@ -1,11 +1,11 @@
 package web
 
 import (
-	"net/http"
+	"config"
 	"log"
+	"net/http"
 	_ "net/http/pprof"
-	"github.com/xsank/EasyProxy/src/util"
-	"github.com/xsank/EasyProxy/src/config"
+	"util"
 )
 
 type WebServer struct {

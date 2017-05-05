@@ -2,7 +2,7 @@ package web
 
 import (
 	"net/http"
-	"github.com/xsank/EasyProxy/src/proxy"
+	"proxy"
 )
 
 const (

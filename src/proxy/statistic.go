@@ -1,7 +1,7 @@
 package proxy
 
 import (
-	"github.com/xsank/EasyProxy/src/util"
+	"util"
 )
 
 var statistic = new(Statistic)
@@ -35,10 +35,10 @@ func Record() {
 	statistic.Clients = make(map[string]Client)
 	statistic.Services = make(map[string]Service)
 	for _, server := range statistic.proxyData.Backends {
-		statistic.Services[server.Url()] = Service{Url:server.Url(), Count:0, Status:"on"}
+		statistic.Services[server.Url()] = Service{Url: server.Url(), Count: 0, Status: "on"}
 	}
 	for _, server := range statistic.proxyData.Deads {
-		statistic.Services[server.Url()] = Service{Url:server.Url(), Count:0, Status:"off"}
+		statistic.Services[server.Url()] = Service{Url: server.Url(), Count: 0, Status: "off"}
 	}
 	for _, channel := range statistic.proxyData.ChannelManager.GetChannels() {
 		host := util.UrlToHost(channel.SrcUrl())
@@ -49,7 +49,7 @@ func Record() {
 			client = statistic.Clients[host]
 			client.Count += 1
 		} else {
-			client = Client{Host:host, Count:1}
+			client = Client{Host: host, Count: 1}
 		}
 		service = statistic.Services[serverUrl]
 		service.Count += 1
@@ -57,4 +57,3 @@ func Record() {
 		statistic.Services[serverUrl] = service
 	}
 }
-

@@ -1,9 +1,9 @@
 package structure
 
 import (
-	"sync"
 	"errors"
-	"github.com/xsank/EasyProxy/src/util"
+	"sync"
+	"util"
 )
 
 type ChannelManager struct {
@@ -32,7 +32,7 @@ func (channelManager *ChannelManager) DeleteChannel(channel *Channel) {
 	channelManager.mutex.Lock()
 	index := util.SliceIndex(channelManager.channels, *channel)
 	if index >= 0 {
-		channelManager.channels = append(channelManager.channels[:index], channelManager.channels[index + 1:]...)
+		channelManager.channels = append(channelManager.channels[:index], channelManager.channels[index+1:]...)
 		deleteMap(channelManager.mapSrc, channel.SrcUrl())
 		deleteMap(channelManager.mapDst, channel.DstUrl())
 	}
